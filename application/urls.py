@@ -3,5 +3,5 @@ from django.views.generic import  ListView
 from .models import Game
 from . import views
 urlpatterns = [
-       url(r'^(?P<room_name>[^/]+)/$', views.room, name='room'),
+       url(r'^(?P<game_name>[^/]+)/$', views.game, name='game'),
 ]
