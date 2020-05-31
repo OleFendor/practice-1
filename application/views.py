@@ -11,18 +11,18 @@ class SignUp(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'application/register.html'
-
-@login_required(login_url='/login/')
-def room(request, room_name):
-    return render(request, 'application/room.html', {
-        'room_name_json': mark_safe(json.dumps(room_name))
-    })
-
-@login_required(login_url='/login/')
+    
+ @login_required(login_url='/login/')
 def mygames (request):
     return render(request, 'application/mygames.html',{
         'games_for_player': Game.get_games_for_player(request.user)[:20],
         'profile': Profile.objects.filter(user=request.user).first()
+    })
+
+@login_required(login_url='/login/')
+def game(request, game_name):
+    return render(request, 'application/game.html', {
+        'game_name_json': mark_safe(json.dumps(game_name))
     })
 
 @login_required(login_url='/login/')
